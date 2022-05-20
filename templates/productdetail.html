@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block title %}{{product.productid.name}}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h3>Sản phẩm: {{product.productid.name}}</h3>
+    <hr>
+    <div class="row">
+        <div class="col-md-4">
+            <img src="{{product.image.url}}" alt="" class="img-fluid">
+            <div class="row">
+                {% for pi in product.productimage_set.all %}
+                <div class="col-md-4 p-3">
+                    <a href="{{pi.image.url}}" target="_blank">
+                        <img src="{{pi.image.url}}" class="img-fluid" style="height: 100px; object-fit: contain;"
+                            alt="">
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col-md-8">
+            <h4>{{product.productid.name}}</h4>
+            <h5>Danh mục: {{product.productid.category}}</h5>
+            <h5>Giá: {{product.price}}</h5>
+            <a href="{% url 'ecomapp:addtocart' product.id %}" class="btn btn-info">Add To Cart</a>
+            <hr>
+            <p>Mô tả: {{product.description}}</p>
+        </div>
+    </div>
+    <hr>
+    <h3>Bình Luận</h3>
+    <div class="col-md-4">
+        <div class="col-12">
+            {% for feedback in feedbacks %}
+            <h4><b>{{feedback.customerid.userid.fullnameid.fullname}}:</b></h4>
+            <textarea readonly = True style = "resize: none;" rows="2" cols="50">{{feedback.content}}</textarea>
+            <p><b>Rating: </b>{{feedback.rate}} Star</p>
+            <p><b>Liên Quan/Không Liên Quan: </b>{{feedback.relevant}}</p>
+            {% endfor %}
+        </div>
+        <form class="row g-3" action="{% url 'ecomapp:productdetail' product.slug %}" method="POST">
+            {% csrf_token %}
+            <div class="col-12" style = "display: table; clear: both;">
+                <div style = "float: left; left: 30px">
+                    <label> {{ form.content.label }}:</label>
+                    {{ form.content }}
+                </div>
+                <div style = "float: left; left: 30px">
+                    <label> {{ form.rating.label }}:</label>
+                    {{ form.rating }}
+                </div>
+            </div>
+            
+            <div class="col-12">
+              <button type="submit" class="btn btn-primary">Send</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

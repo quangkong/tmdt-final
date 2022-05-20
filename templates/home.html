@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<style>
+    .our-product {
+        position: relative;
+        margin-bottom: 0;
+        font-size: 3rem;
+        font-weight: bold;
+        font-family: 'Playfair Display', serif;
+    }
+
+    .our-product span{
+        font-family: 'Playfair Display', serif;
+        color: #1641ff;
+    }
+</style>
+
+{% comment %} slide {% endcomment %}
+<div class="background-banner d-block w-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-6" style="padding: 199px 0;">
+                <div class="content-banner">
+                    <h1 style="color: #1641ff;">Sale 20% Off</h1>
+                    <h1>On Everything</h1>
+                    <p>Explicabo esse amet tempora quibusdam laudantium, laborum eaque magnam fugiat hic? Esse dicta
+                        aliquid
+                        error
+                        repudiandae earum suscipit fugiat molestias, veniam, vel architecto veritatis delectus
+                        repellat modi
+                        impedit
+                        sequi.</p>
+                    <button class="btn btn-primary btn-addcart">Shop Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <!-- <h1 class="text-center">Chào mừng đến với sàn thương mại điện tử của chúng tôi. </h1> -->
+    <!-- <hr> -->
+    <h2 class="text-center our-product mt-5"><span>Sản Phẩm</span> Của Chúng Tôi </h2>
+    <div class="row mt-5">
+        {% for p in product_list %}
+            {% if p.isUpload %}
+            <div class="col-3 text-center mb-5">
+                <img src="{{p.image.url}}" alt="" class="img-fluid" style="height: 250px; object-fit: contain; width: 100%">
+                <h4><a class="title-item" href="{% url 'ecomapp:productdetail' p.slug %}">{{p.productid.name}}</a>
+                    {% if p in wishListItem %}
+                    <a href="{% url 'ecomapp:updateWishList' p.id %}?action=rmv" class="material-icons col-md-4 "> favorite </a>
+                    {% else %}
+                    <a href="{% url 'ecomapp:updateWishList' p.id %}?action=add" class="material-icons col-md-4 "> favorite_border </a>
+                    {% endif %}</h4>
+
+                <p class="mt-3 price-item">${{p.price}}</p>
+                <a href="{% url 'ecomapp:addtocart' p.id %}" class="btn btn-primary btn-addcart">Thêm vào giỏ</a>
+            </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+    <nav style='justify-content: center;
+    display: flex; margin-top: 50px' aria-label="...">
+        <ul class="pagination">
+            {% if product_list.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ product_list.previous_page_number }}">Sau</a>
+            </li>
+            {% else %}
+            <li class="page-item disabled">
+                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Trước</a>
+            </li>
+            {% endif %}
+
+            {% for i in product_list.paginator.page_range %}
+            {% if i == product_list.number %}
+            <li class="page-item active"><a class="page-link">{{i}}</a></li>
+            {% else %}
+            <li class="page-item"><a class="page-link" href="?page={{i}}">{{i}}</a></li>
+            {% endif %}
+            {% endfor %}
+
+            {% if product_list.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ product_list.next_page_number }}">Sau</a>
+            </li>
+            {% else %}
+            <li class="page-item disabled">
+                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Sau</a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+
+</div>
+{% endblock %}

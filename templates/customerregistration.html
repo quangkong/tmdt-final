@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Đăng kí tài khoản khách hàng{% endblock %}
+
+{% block content %}
+<style>
+    .errorlist {
+        color: red;
+    }
+</style>
+<div class="container-fuild backgroundForm">
+    <div class="row">
+        <div class="col-lg-3 col-md-2"></div>
+        <div class="col-lg-6 col-md-8 login-box">
+            <div class="col-lg-12 login-key">
+                <i class="fa fa-key" aria-hidden="true"></i>
+            </div>
+            <div class="col-lg-12 login-title">
+                REGISTER
+            </div>
+            <div class="col-lg-12 login-form">
+                <div class="col-lg-12 login-form">
+                    <form  action="" method="POST">
+                        {% csrf_token %}
+                        {{form.as_p}}
+                        <button class="btn btn-outline-primary">Đăng kí</button>
+                        {% comment %} <p> Bạn đã có tài khoản? <a href="{% url 'ecomapp:customerlogin' %}">Đăng nhập </a></p> {% endcomment %}
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-2"></div>
+        </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends 'adminpages/adminbase.html' %}
+
+{% block title %}Import Product{% endblock %}
+
+{% block content %}
+<style>
+    #formLogin p label {
+        display: block;
+        font-weight: bold;
+    }
+    #formLogin p input {
+        width: 100%;
+    }
+    #formLogin p select {
+        width: 50%;
+    }
+    .bg-add-product {
+        height: 150vh;
+        background-color: #222D32;
+    }
+    .btn-primary {
+        background-color: #1641ff !important;
+        transition: linear .5s
+    }
+    .btn-addcart:hover {
+        background-color: transparent !important;
+        color: #1641ff !important;
+    }
+  
+</style>
+<div class="container-fuild bg-add-product">
+    {% comment %} <div class="row">
+        <div class="col-md-10 mx-auto">
+            <h3>Import product</h3>
+            <a href = "{% url 'ecomapp:adminimportingrecordlist' %}">Xem Danh Sách Hoá Đơn</a>
+            <hr>
+            <form action="" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{form.as_p}}
+                <button class="btn btn-info">Submit Data</button>
+            </form>
+        </div>
+    </div> {% endcomment %}
+    <div class="row justify-content-center pt-5 pb-5">
+        <div class="col-md-6">
+          <span class="anchor" id="formLogin"></span> 
+                      <!-- form card login -->
+          <div class="card card-outline-secondary">
+            <div class="card-header">
+                <h3 class="mb-0 text-center our-product">
+                    Import <span>Products</span></h3>
+                <a href = "{% url 'ecomapp:adminimportingrecordlist' %}">Xem Danh Sách Hoá Đơn</a>
+            </div>
+            <div class="card-body">
+              <form autocomplete="off" class="form" id="formLogin" name="formLogin" role="form" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{form.as_p}}
+                <button class="btn btn-primary btn-addcart btn-lg float-right" >Submit Data</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
+{% endblock %}

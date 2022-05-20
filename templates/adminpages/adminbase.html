@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        .nav-item a{
+            color: black !important;
+            font: 500 12px/80px "Roboto", sans-serif;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .nav-item a:hover{
+            color: #1641ff !important;
+        }
+        .our-product {
+            position: relative;
+            margin-bottom: 0;
+            font-size: 2.5rem;
+            font-weight: bold;
+            font-family: 'Playfair Display', serif;
+        }
+    
+        .our-product span{
+            font-family: 'Playfair Display', serif;
+            color: #1641ff;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #f8f8f8">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'ecomapp:adminhome' %}">
+                <img src="data:image/webp;base64,UklGRroDAABXRUJQVlA4TK4DAAAvgEAMEG+kkJEkqdTOn+JQ9lcQC6Z4AN0JBJJc9mdcYdu2TSV3/39n80FBNG1D3VT2Btp7IQAAIgiABYi9agAIEFx0gAsAQAedhIFesILAhsRAwBXEBnWgXiAIVieubxbmRvn1UWt4KEi7bcuQpNcat23b5rgwtm3bzHIlIvJPZ7wX6JXxPaL/DCRJktE97ViLcnsDaLqqc3B280gicXR7brirBuxz0+SRhNRHp9vALtfPJzS83AL2uGrkZELPk9Zs5uBaQtub9ZZscydh4MMdYIEbjyaMfNyCOqCaTqbTKdVk7BdWriYkTl1/9suJ/O/t7XMymo24b2woIfGN747Ef++elvBMQKxde4Ie3tkXjsJfL0oq3u+hGXpw5z/RSBovU6YliLHrJPniOBp1gVLF+WswohHFwlMEaxpi64odszjOHfpFrI7vu08nP+7f+yaB+HOGVBfE1f3q/N6uEa+kn5TjFtGwmtjDdgOto2GcuwShlPPAzOPK/B3CPH2/CMhLojk1MSfOGYohMCMvKpdeoEApeiWIttTEIVHedMB5Acy8porTS4FaKUmSdNSQdF0W+AwTCAAkD3wfI2Eyn+yAolFvq+LUSIjoLP0gmohlOccnuCgAskwoIxB8ghcgChegwLm4YkWpVHEaKFDN/92R/CYoQRkDhJEoAcKjGC7kCUFZgr+jirNCgaYoCckRHYXZyOiwUL+MOCwG2aifONKAZSIMpJy4Li7noSArivMTUvpDrx2V3+wl/6ZP6DvYvIu4mXzXo4cVMM8jXcpUIc8A6sbyaF10gnBuftV45e4TQHtuUY5Hkg1pKFOIXARwQ3KdXbSDAhC5RGgPCMPHKiKhPHmvlvPl7NRU6oME4yrRkEEz49FsEV3OICdpNpOLhPLklWPqzwniTgO5nHsAGR5CsehDgJqpdGdySChPnv411TXas9pMRVYSJzxqZ1DQUV7epYC60Dx58tkwT+h4CgwUcE6a6cMNckk35EnIXEmevDDL+9NUzRrKSN4/rmgJOWfkBRioVABgGYHmgpBAKMny5Ml3k3yU/JEvgKGDQEbANMkY4okUErQrInS0CznZBHEwFfYDiZ582oUkxiCGGngs0dNf5lmP0X9gOVegCIOyev7PNIdrIW7WqFf/zHK0DcCOMkg7gB2ln2ModpRujncD2FP6sal0Y1fpxb5Sx8JSxsJ6p4qFda3nsDwW1rX90HTYygCM0gA0HbUyABM0AO1HaWybfHgJRUwuLrdD/A0="
+                alt="">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent" style="justify-content: center">
+            <ul class="navbar-nav ">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'ecomapp:adminorderlist' %}">All Orders</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'ecomapp:adminproductlist' %}">All Products</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'ecomapp:adminitemlist' %}">All Items</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'ecomapp:adminimportproduct' %}">Import Products</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'ecomapp:adminreviewlist' %}">All Reviews</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'ecomapp:home' %}" target="_blank">Visit site</a>
+                </li>
+            </ul>
+        </div>
+        </div>
+    </nav>
+    {% block content %}
+
+    {% endblock %}
+</body>
+
+</html>
