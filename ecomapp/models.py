@@ -284,7 +284,7 @@ class Item(models.Model):
     description = models.CharField(db_column='Description', max_length=255, blank=True, null=True)  # Field name made lowercase.
     slug = models.SlugField(unique=True)
     image = models.ImageField(upload_to="products/images/")
-    isUpload = models.BooleanField(default=False)
+    isUpload = models.BooleanField(default=True)
 
     class Meta:
         
