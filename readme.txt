@@ -19,3 +19,7 @@ Make better design to make your project more stunning.
 account admin: 
     username: admin
     password: admin
+
+account admin-login
+    username: quangvmq
+    password: quangvmq
